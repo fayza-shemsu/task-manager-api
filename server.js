@@ -2,7 +2,9 @@
 
 import express from "express";
 import dotenv from "dotenv";
-import connectDB from "./config/db.js"; // note the .js extension for ES modules
+import connectDB from "./config/db.js"; 
+import authRoutes from "./routes/auth.js";
+
 
 // Load environment variables
 dotenv.config();
@@ -20,6 +22,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Task Manager API is running...");
 });
+
+app.use("/api/auth", authRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
